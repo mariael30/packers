@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Starter Pack</string>
+    <string name="app_name2">Packers</string>
     <string name="Start">Ready</string>
     <string name="gambar">Gambar</string>
-    <string name="NAHHHHHH">Opening</string>
+    <string name="Search">Search</string>
     <string name="title_activity_list">ListActivity</string>
+    <string name="kembali">kembali</string>
 </resources>

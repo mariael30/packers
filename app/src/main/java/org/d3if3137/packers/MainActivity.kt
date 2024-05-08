@@ -139,37 +139,6 @@ class MainActivity : ComponentActivity() {
     }
 
 
-//gajadi masukin gambar
-//@Composable
-//fun Backgroundnya(background: Background) {
-//    MainScreen {modifier ->
-//        Column(
-//            modifier = modifier
-//                .fillMaxSize()
-//                .padding(16.dp),
-//            verticalArrangement = Arrangement.Center,
-//            horizontalAlignment = Alignment.CenterHorizontally
-//        ){
-//            Image(
-//                painter = painterResource(background.imageResId),
-//                contentDescription = stringResource(R.string.gambar, background.nama),
-//                contentScale = ContentScale.Crop,
-//                modifier = Modifier.size(132.dp)
-//            )
-//        }
-//    }
-//}
-
-@Composable
-fun Greeting(name: String) {
-    MainScreen {modifier ->
-        Text(
-            text = "Hello $name!",
-            modifier = modifier
-        )
-    }
-}
-
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Preview(showBackground = true)
 @Composable
