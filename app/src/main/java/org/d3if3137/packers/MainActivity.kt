@@ -35,11 +35,15 @@ import androidx.core.content.ContextCompat.startActivity
 import android.content.Context
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import org.d3if3137.packers.database.PacksDb
+import org.d3if3137.packers.navigation.SetupNavGraph
 //import androidx.compose.ui.platform.AmbientContext
 //import kotlinx.coroutines.flow.internal.NoOpContinuation.context
 import org.d3if3137.packers.ui.theme.PackersTheme
 
-//import kotlin.coroutines.jvm.internal.CompletedContinuation.context
 
 class MainActivity : ComponentActivity() {
 
@@ -47,34 +51,16 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PackersTheme {
-                // A surface container using the 'background' color from the theme
-//                Box(modifier = Modifier.fillMaxSize()) {
-//                    // Background image
-//                    Image(
-//                        painter = painterResource(R.drawable.bggg),
-//                        contentDescription = null,
-//                        modifier = Modifier.fillMaxSize()
-//                    )
-//                    Start()
-
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colorScheme.background
-//                ) {
-                    Start()
-
-//                }
+                Surface (
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ){
+                    SetupNavGraph()
+                }
             }
         }
     }
 }
-//    private fun getData(): List<Background> {
-//        return listOf(
-//            Background("", R.drawable.bggg,
-//                )
-//        )
-//    }
-//}
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
@@ -97,7 +83,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun Start() {
+    fun Start(navController: NavController) {
         MainScreen { modifier ->
             val context = LocalContext.current
 
@@ -124,8 +110,7 @@ class MainActivity : ComponentActivity() {
                 )
                 Button(
                     onClick = {
-                        val navigate = Intent(context, ListActivity::class.java)
-                        context.startActivity(navigate)
+                        navController.navigate(Screen.ListBarang.route)
                     },
                     modifier = Modifier
                         .fillMaxWidth(0.5f)
@@ -144,6 +129,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ScreenPreview() {
     PackersTheme {
-        Start()
+        Start(rememberNavController())
     }
 }

@@ -6,4 +6,9 @@
     <string name="Search">Search</string>
     <string name="title_activity_list">ListActivity</string>
     <string name="kembali">kembali</string>
+    <string name="kembali2">kembali</string>
+    <string name="nama_barang">Nama Barang</string>
+    <string name="detail_barang">Detail Barang</string>
+    <string name="tambah_barang">Tambah Barang</string>
+    <string name="add_barang">Tambahkan</string>
 </resources>
