@@ -20,4 +20,7 @@ interface PacksDao {
 
     @Query("SELECT * FROM packs ORDER BY judul")
     fun getPacks(): Flow<List<Packs>>
+
+    @Query("SELECT * FROM packs WHERE id = :id")
+    suspend fun getPacksById(id:Long): Packs?
 }

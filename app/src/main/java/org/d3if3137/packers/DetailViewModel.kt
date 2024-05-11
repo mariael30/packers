@@ -19,4 +19,20 @@ class DetailViewModel(private val dao: PacksDao): ViewModel() {
             dao.insert(packs)
         }
     }
+
+        suspend fun getPacks(id: Long): Packs? {
+            return dao.getPacksById(id)
+    }
+
+    fun update(judul: String, isi: String) {
+        val packs = Packs(
+            judul = judul,
+            isi = isi
+        )
+
+        viewModelScope.launch(Dispatchers.IO){
+            dao.update(packs)
+        }
+    }
 }
+

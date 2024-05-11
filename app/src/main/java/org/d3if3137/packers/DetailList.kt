@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -75,7 +76,8 @@ fun DetailList(navController: NavController, id: Long? = null) {
             onTitleChange = { namaBarang = it },
             detail = detailBarang,
             onDetailChange = { detailBarang  = it },
-            modifier = Modifier.padding(padding)
+            modifier = Modifier.padding(padding),
+            navController
         )
     }
 }
@@ -85,16 +87,22 @@ fun FormBarang (
     title: String, onTitleChange: (String) -> Unit,
     detail: String, onDetailChange: (String) -> Unit,
     modifier: Modifier,
-    navController: NavController,
-    viewModel: MainViewModel
+    navController : NavController,
+    id: Long? = null
 ) {
     var judul by remember { mutableStateOf("") }
     var isi by remember { mutableStateOf("") }
-    var id by remember { mutableStateOf<Int?>(null) }
     val context = LocalContext.current
     val db = PacksDb.getInstance(context)
     val factory = ViewModelFactory(db.dao)
     val viewModel: DetailViewModel = viewModel(factory = factory)
+
+    LaunchedEffect(true) {
+        if (id == null) return@LaunchedEffect
+        val data = viewModel.getPacks(id) ?: return@LaunchedEffect
+        judul = data.judul
+        isi = data.isi
+    }
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -104,7 +112,7 @@ fun FormBarang (
         OutlinedTextField(
             value = title,
             onValueChange = { onTitleChange(it) },
-            label = { Text(text = stringResource(R.string.tambah_barang))},
+            label = { Text(text = stringResource(R.string.nama_barang))},
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.Words,
@@ -127,8 +135,10 @@ fun FormBarang (
             onClick = {
                 if (id == null) {
                     viewModel.insert(judul, isi)
+                } else {
+                    viewModel.update(judul, isi)
                 }
-                //navController.popBackStack()
+                navController.popBackStack()
             },
             modifier = Modifier
                 .fillMaxWidth(0.5f)

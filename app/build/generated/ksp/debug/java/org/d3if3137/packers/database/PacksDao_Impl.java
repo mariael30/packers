@@ -1,7 +1,9 @@
 package org.d3if3137.packers.database;
 
 import android.database.Cursor;
+import android.os.CancellationSignal;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.CoroutinesRoom;
 import androidx.room.EntityDeletionOrUpdateAdapter;
 import androidx.room.EntityInsertionAdapter;
@@ -139,7 +141,7 @@ public final class PacksDao_Impl implements PacksDao {
   }
 
   @Override
-  public Flow<List<Packs>> getCatatan() {
+  public Flow<List<Packs>> getPacks() {
     final String _sql = "SELECT * FROM packs ORDER BY judul";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     return CoroutinesRoom.createFlow(__db, false, new String[] {"packs"}, new Callable<List<Packs>>() {
@@ -174,6 +176,43 @@ public final class PacksDao_Impl implements PacksDao {
         _statement.release();
       }
     });
+  }
+
+  @Override
+  public Object getPacksById(final long id, final Continuation<? super Packs> $completion) {
+    final String _sql = "SELECT * FROM packs WHERE id = ?";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
+    int _argIndex = 1;
+    _statement.bindLong(_argIndex, id);
+    final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
+    return CoroutinesRoom.execute(__db, false, _cancellationSignal, new Callable<Packs>() {
+      @Override
+      @Nullable
+      public Packs call() throws Exception {
+        final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+        try {
+          final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+          final int _cursorIndexOfJudul = CursorUtil.getColumnIndexOrThrow(_cursor, "judul");
+          final int _cursorIndexOfIsi = CursorUtil.getColumnIndexOrThrow(_cursor, "isi");
+          final Packs _result;
+          if (_cursor.moveToFirst()) {
+            final long _tmpId;
+            _tmpId = _cursor.getLong(_cursorIndexOfId);
+            final String _tmpJudul;
+            _tmpJudul = _cursor.getString(_cursorIndexOfJudul);
+            final String _tmpIsi;
+            _tmpIsi = _cursor.getString(_cursorIndexOfIsi);
+            _result = new Packs(_tmpId,_tmpJudul,_tmpIsi);
+          } else {
+            _result = null;
+          }
+          return _result;
+        } finally {
+          _cursor.close();
+          _statement.release();
+        }
+      }
+    }, $completion);
   }
 
   @NonNull
