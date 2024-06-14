@@ -14,4 +14,15 @@
     <string name="add_barang">Tambahkan</string>
     <string name="list">Tampilan list</string>
     <string name="grid">Tampilan grid</string>
+    <string name="logo_login">Logo Packers</string>
+    <string name="opening">Ready to go? Go pack your things first!!</string>
+    <string name="login_first">Login to your account</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="dont_have_account">"Register here if you don't have an account "</string>
+    <string name="register">Register</string>
+    <string name="input_username">Create Username</string>
+    <string name="input_password">Create Password</string>
+    <string name="verify_password">Verifiy your password</string>
 </resources>

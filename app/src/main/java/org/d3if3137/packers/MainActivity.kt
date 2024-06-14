@@ -1,6 +1,5 @@
 package org.d3if3137.packers
 
-import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -33,9 +32,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
 import android.content.Context
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.material3.*
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.d3if3137.packers.database.PacksDb
@@ -66,17 +71,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun MainScreen(content: @Composable (Modifier) -> Unit) {
         Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = {
-                        Text(text = stringResource(id = R.string.app_name))
-                    },
-                    colors = TopAppBarDefaults.mediumTopAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        titleContentColor = MaterialTheme.colorScheme.primary,
-                    )
-                )
-            }
+
         ) { padding ->
             content(Modifier.padding(padding))
         }
@@ -98,26 +93,49 @@ class MainActivity : ComponentActivity() {
                 )
             }
             Column(
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxSize()
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.Center,
+                    .padding(top = 50.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = "Get Ready ?!",
-                    style = MaterialTheme.typography.displayMedium
+            ){
+                Image(painter = painterResource(id = R.drawable.logo_packers),
+                    contentDescription = stringResource(R.string.logo_login),
+                    modifier = Modifier.size(150.dp)
                 )
-                Button(
-                    onClick = {
-                        navController.navigate(Screen.ListBarang.route)
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth(0.5f)
-                        .padding(top = 16.dp),
-                    contentPadding = PaddingValues(16.dp)
-                ) {
-                    Text(text = stringResource(R.string.Start))
+                Spacer(modifier = Modifier.height(4.dp))
+
+                Text(text = stringResource(R.string.opening),
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold)
+
+                Text(text = stringResource(R.string.login_first))
+
+                Spacer(modifier = Modifier.height(7.dp))
+
+                OutlinedTextField(
+                    value = "",
+                    onValueChange = {},
+                    label = {
+                    Text(text = stringResource(R.string.username))
+                })
+
+                OutlinedTextField(
+                    value = "",
+                    onValueChange = {},
+                    label = {
+                        Text(text = stringResource(R.string.password))
+                    }
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                
+                Button(onClick = { /*TODO*/ }) {
+                    Text(text = stringResource(id = R.string.login))
+                }
+                TextButton(onClick = {},
+                    colors = ButtonDefaults.textButtonColors(
+                        contentColor = Color.White)
+                    ){
+                    Text(text = stringResource(id = R.string.dont_have_account))
                 }
             }
         }

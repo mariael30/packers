@@ -57,19 +57,6 @@ import org.d3if3137.packers.database.PacksDb
 import org.d3if3137.packers.ui.theme.PackersTheme
 
 
-//class ListActivity : ComponentActivity() {
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContent {
-//            PackersTheme{
-//                ListScreen()
-//            }
-//        }
-//    }
-//}
-
-
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListScreen(navController: NavController) {
@@ -81,6 +68,7 @@ fun ListScreen(navController: NavController) {
                     IconButton(onClick = { }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
+                            //diganti sidebar
                             contentDescription = stringResource(R.string.kembali),
                             tint = MaterialTheme.colorScheme.primary
                         )
@@ -147,6 +135,7 @@ fun ScreenContent(showList: Boolean, modifier: Modifier, navController: NavContr
         ) {
             Text(text = stringResource(R.string.list_kosong))
         }
+
     } else {
 //        if (showList) {
             LazyColumn(
