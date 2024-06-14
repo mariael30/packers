@@ -1,12 +1,14 @@
 package org.d3if3137.packers.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import org.d3if3137.packers.DetailList
 import org.d3if3137.packers.ListScreen
+import org.d3if3137.packers.Register
 import org.d3if3137.packers.Screen
 import org.d3if3137.packers.Start
 
@@ -24,6 +26,9 @@ fun SetupNavGraph(navController : NavHostController = rememberNavController()) {
         }
         composable(Screen.FormBarang.route) {
             DetailList(navController)
+        }
+        composable(Screen.FormRegister.route) {
+            Register(navController)
         }
     }
 }
