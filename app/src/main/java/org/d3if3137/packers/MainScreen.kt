@@ -43,38 +43,13 @@ import org.d3if3137.packers.datastore.StoreRegister
 import org.d3if3137.packers.ui.theme.PackersTheme
 
 
-//class MainActivity : ComponentActivity() {
-//    private lateinit var userPreferences: UserPreferences
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        userPreferences = UserPreferences(this)
-//        setContent {
-//            PackersTheme {
-//                Surface (
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colorScheme.background
-//                ){
-//                    val navController = rememberNavController()
-//                    val isLoggedIn by userPreferences.isLoggedIn.collectAsState(initial = false)
-//                    if(isLoggedIn){
-//                        startActivity(Intent(this,ListActivity::class.java))
-//                        finish()
-//                    } else {
-//                        Start(navController, userPreferences)
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
-
 @Composable
 fun MainScreen(navController: NavController) {
     PackersTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
+            //add navigation drawer
         ) {
             Start(rememberNavController())
         }
