@@ -27,4 +27,7 @@
     <string name="verify_password">Verifiy your password</string>
     <string name="dismiss">Abaikan</string>
     <string name="success_registration">Registration Successfull!</string>
+    <string name="navigation_bar">Navigation Item</string>
+    <string name="text_navigation">Menu</string>
+    <string name="arrow_back">Kembali</string>
 </resources>
