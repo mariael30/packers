@@ -30,4 +30,5 @@
     <string name="navigation_bar">Navigation Item</string>
     <string name="text_navigation">Menu</string>
     <string name="arrow_back">Kembali</string>
+    <string name="logo_sidenav">Logo di Sidebar</string>
 </resources>

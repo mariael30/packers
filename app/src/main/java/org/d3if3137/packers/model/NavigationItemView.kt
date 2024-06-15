@@ -29,8 +29,8 @@ import org.d3if3137.packers.R
 fun NavigationItemView(
     navigationItem: NavigationItem,
     selected: Boolean,
-    onClick : () -> Unit
-){
+    onClick: () -> Unit
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -43,20 +43,20 @@ fun NavigationItemView(
             )
             .padding(horizontal = 12.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically
-    ){
+    ) {
         Icon(
-            painter = painterResource(R.drawable.baseline_view_sidebar_24),
-            contentDescription = stringResource(R.string.navigation_bar),
-            tint = if(selected) MaterialTheme.colorScheme.primary
+            painter = painterResource(id = navigationItem.icon),
+            contentDescription = "Navigation Item Icon",
+            tint = if (selected) MaterialTheme.colorScheme.primary
             else MaterialTheme.colorScheme.onSurface
         )
-        Spacer(modifier = Modifier.width(15.dp))
+        Spacer(modifier = Modifier.width(12.dp))
         Text(
-            text = stringResource(R.string.text_navigation),
-            color = if(selected) MaterialTheme.colorScheme.primary
+            text = navigationItem.title,
+            color = if (selected) MaterialTheme.colorScheme.primary
             else MaterialTheme.colorScheme.onSurface,
             fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal,
             lineHeight = 20.sp
-            )
+        )
     }
 }

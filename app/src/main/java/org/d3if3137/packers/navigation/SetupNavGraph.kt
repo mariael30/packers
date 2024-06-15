@@ -11,6 +11,7 @@ import org.d3if3137.packers.ListScreen
 import org.d3if3137.packers.Register
 import org.d3if3137.packers.Screen
 import org.d3if3137.packers.Start
+import org.d3if3137.packers.model.CustomDrawerState
 
 @Composable
 fun SetupNavGraph(navController : NavHostController = rememberNavController()) {
@@ -22,7 +23,8 @@ fun SetupNavGraph(navController : NavHostController = rememberNavController()) {
             Start(navController)
         }
         composable(Screen.ListBarang.route) {
-            ListScreen(navController)
+           ListScreen(navController = navController, drawerState = CustomDrawerState.Closed) {
+           }
         }
         composable(Screen.FormBarang.route) {
             DetailList(navController)

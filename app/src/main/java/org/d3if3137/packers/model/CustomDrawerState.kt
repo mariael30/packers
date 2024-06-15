@@ -10,6 +10,6 @@ fun CustomDrawerState.isOpened(): Boolean{
 }
 
 fun CustomDrawerState.opposite(): CustomDrawerState {
-    return if (this == CustomDrawerState.Opened) CustomDrawerState.Closed
-    else CustomDrawerState.Opened
+    return if (this == CustomDrawerState.Closed) CustomDrawerState.Opened
+    else CustomDrawerState.Closed
 }
